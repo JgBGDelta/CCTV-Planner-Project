@@ -11,6 +11,8 @@ public class ToolbarManager : MonoBehaviour
 
     //Selection
     public GameObject[] toolbarsGameobjects;
+    public GameObject auxToolbarGameobject;
+    private RectTransform auxToolbarSelectionSquare;
     private RectTransform[] toolbarSelectionSquares;
 
 
@@ -20,8 +22,8 @@ public class ToolbarManager : MonoBehaviour
         toolbarSelectionSquares = new RectTransform[toolbarsGameobjects.Length];
         for(int i = 0; i< toolbarsGameobjects.Length;i++){
             toolbarSelectionSquares[i] = toolbarsGameobjects[i].transform.GetChild(0).GetComponent<RectTransform>();
-            toolbarSelectionSquares[i].gameObject.SetActive(true);
         }
+        auxToolbarSelectionSquare = auxToolbarGameobject.transform.GetChild(0).GetComponent<RectTransform>();
     }
     private void Start()
     {
@@ -73,19 +75,38 @@ public class ToolbarManager : MonoBehaviour
         if (!canSelectTool(toolId))
             return;
 
-        SelectedToolId = toolId;
-        toolbarSelectionSquares[SelectedToolbarId].localPosition = toolbarsGameobjects[SelectedToolbarId].transform.GetChild(SelectedToolId+1).localPosition;
+        if (toolId < 0)
+        {
+            SelectedToolId = toolId;//-2 -> Move, -1 -> Zoom
+            toolbarSelectionSquares[SelectedToolbarId].gameObject.SetActive(false);
+            auxToolbarSelectionSquare.gameObject.SetActive(true);
+            auxToolbarSelectionSquare.localPosition = auxToolbarGameobject.transform.GetChild(SelectedToolId + 3).localPosition;
+        }
+        else
+        {
+            SelectedToolId = toolId;
+            toolbarSelectionSquares[SelectedToolbarId].gameObject.SetActive(true);
+            auxToolbarSelectionSquare.gameObject.SetActive(false);
+            toolbarSelectionSquares[SelectedToolbarId].localPosition = toolbarsGameobjects[SelectedToolbarId].transform.GetChild(SelectedToolId + 1).localPosition;
+        }
 
         switch (toolId)
         {
-            case 0:
-                //Move tool
-                Camera.main.GetComponent<CameraControls>().selectMoveTool();
+            case -2: //Aux Move
+                Camera.main.GetComponent<CameraControls>().moveToolSelected = true;
+                Camera.main.GetComponent<CameraControls>().zoomToolSelected = false;
                 break;
-            case 1:
-                //Zoom
-                Camera.main.GetComponent<CameraControls>().selectZoomTool();
+            case -1: //Aux Zoom
+                Camera.main.GetComponent<CameraControls>().zoomToolSelected = true;
+                Camera.main.GetComponent<CameraControls>().moveToolSelected = false;
+                break;
+            default:
+                Camera.main.GetComponent<CameraControls>().zoomToolSelected = false;
+                Camera.main.GetComponent<CameraControls>().moveToolSelected = false;
                 break;
         }
+
     }
+
+  
 }
