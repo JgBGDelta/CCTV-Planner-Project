@@ -67,7 +67,7 @@ public class CameraControls : MonoBehaviour
                 Input.GetAxisRaw(VerticalAxisName)
                 );
             }
-            _camera.transform.Translate(inputVector * PanSpeed * Time.deltaTime);
+            _camera.transform.Translate(inputVector * PanSpeed * Time.deltaTime * Mathf.Sqrt(_camera.orthographicSize/10));
         }
         if (canZoom)
         {
