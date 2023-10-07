@@ -9,7 +9,11 @@ public class ToolbarManager : MonoBehaviour
     public int SelectedToolId { get; set; }
     public int SelectedToolbarId { get; set; }
 
-    //Selection
+    [Header("Tools")]
+    [SerializeReference]
+    public Tool[] tools;
+
+    [Header("Toolbars")]
     public GameObject[] toolbarsGameobjects;
     public GameObject auxToolbarGameobject;
     private RectTransform auxToolbarSelectionSquare;
@@ -24,6 +28,7 @@ public class ToolbarManager : MonoBehaviour
             toolbarSelectionSquares[i] = toolbarsGameobjects[i].transform.GetChild(0).GetComponent<RectTransform>();
         }
         auxToolbarSelectionSquare = auxToolbarGameobject.transform.GetChild(0).GetComponent<RectTransform>();
+
     }
     private void Start()
     {
@@ -90,21 +95,7 @@ public class ToolbarManager : MonoBehaviour
             toolbarSelectionSquares[SelectedToolbarId].localPosition = toolbarsGameobjects[SelectedToolbarId].transform.GetChild(SelectedToolId + 1).localPosition;
         }
 
-        switch (toolId)
-        {
-            case -2: //Aux Move
-                Camera.main.GetComponent<CameraControls>().moveToolSelected = true;
-                Camera.main.GetComponent<CameraControls>().zoomToolSelected = false;
-                break;
-            case -1: //Aux Zoom
-                Camera.main.GetComponent<CameraControls>().zoomToolSelected = true;
-                Camera.main.GetComponent<CameraControls>().moveToolSelected = false;
-                break;
-            default:
-                Camera.main.GetComponent<CameraControls>().zoomToolSelected = false;
-                Camera.main.GetComponent<CameraControls>().moveToolSelected = false;
-                break;
-        }
+        
 
     }
 
