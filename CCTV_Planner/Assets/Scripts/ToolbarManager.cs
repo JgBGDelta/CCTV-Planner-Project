@@ -12,6 +12,8 @@ public class ToolbarManager : MonoBehaviour
     [Header("Tools")]
     [SerializeReference]
     public Tool[] tools;
+    private Tool selectedTool;
+
 
     [Header("Toolbars")]
     public GameObject[] toolbarsGameobjects;
@@ -72,31 +74,51 @@ public class ToolbarManager : MonoBehaviour
         }
         toolbarsGameobjects[toolbarId].SetActive(true);
         SelectedToolbarId = toolbarId;
-        selectTool(0);
+        selectTool("-2,0");
     }
 
-    public void selectTool(int toolId)
+    public void selectTool(string parseableStr)
     {
-        if (!canSelectTool(toolId))
+        //Get toolId in the toolbar and toolListId in the global list of tools
+        int[] tempResults = getIntsFromParseableString(parseableStr);
+        int toolbarToolId = tempResults[0];
+        int toolListId = tempResults[1];
+
+        if (!canSelectTool(toolbarToolId))
             return;
 
-        if (toolId < 0)
+
+        toolbarSelectionSquares[SelectedToolbarId].gameObject.SetActive(!(toolbarToolId < 0));
+        auxToolbarSelectionSquare.gameObject.SetActive(toolbarToolId < 0);
+
+        if (toolbarToolId < 0)
         {
-            SelectedToolId = toolId;//-2 -> Move, -1 -> Zoom
-            toolbarSelectionSquares[SelectedToolbarId].gameObject.SetActive(false);
-            auxToolbarSelectionSquare.gameObject.SetActive(true);
-            auxToolbarSelectionSquare.localPosition = auxToolbarGameobject.transform.GetChild(SelectedToolId + 3).localPosition;
+            auxToolbarSelectionSquare.localPosition = auxToolbarGameobject.transform.GetChild(toolbarToolId + 3).localPosition;
         }
         else
         {
-            SelectedToolId = toolId;
-            toolbarSelectionSquares[SelectedToolbarId].gameObject.SetActive(true);
-            auxToolbarSelectionSquare.gameObject.SetActive(false);
-            toolbarSelectionSquares[SelectedToolbarId].localPosition = toolbarsGameobjects[SelectedToolbarId].transform.GetChild(SelectedToolId + 1).localPosition;
+            toolbarSelectionSquares[SelectedToolbarId].localPosition = toolbarsGameobjects[SelectedToolbarId].transform.GetChild(toolbarToolId + 1).localPosition;
         }
 
+        //Select the tool from the list
+        SelectedToolId = toolListId;
+        if(selectedTool != null)
+            selectedTool.deselectTool();
+        selectedTool = tools[SelectedToolId];
+        selectedTool.selectTool();
         
 
+    }
+
+    private int[] getIntsFromParseableString (string str)
+    {
+        string[] numsStr = str.Split(",");
+        int[] nums = new int[numsStr.Length];
+        for(int i = 0; i< numsStr.Length; i++)
+        {
+            nums[i] = int.Parse(numsStr[i]);
+        }
+        return nums;
     }
 
   

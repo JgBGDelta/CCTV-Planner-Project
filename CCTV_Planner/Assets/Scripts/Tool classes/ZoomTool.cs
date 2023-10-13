@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class ZoomTool : Tool
 {
+
     public ZoomTool() : base()
     {
 

@@ -13,6 +13,12 @@ public class GridBackground : MonoBehaviour
 
     void Start()
     {
+        //Destroy all children if there are
+        foreach(Transform child in gameObject.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
         gridObjs = new GameObject[5, 5];
         for(int i = 0; i < gridObjs.GetLength(0); i++)
         {
@@ -23,7 +29,6 @@ public class GridBackground : MonoBehaviour
                     new Vector3(20*((int)gridObjs.GetLength(0)/2),20 * ((int)gridObjs.GetLength(0) / 2), 0);
                 inst.transform.localScale = new Vector3(gridScale, gridScale, 1);
                 inst.transform.parent = this.transform;
-                print(i + " " + j);
                 gridObjs[i, j] = inst;
             }
         }
