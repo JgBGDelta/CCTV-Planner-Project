@@ -9,5 +9,8 @@ public abstract class Tool
     public Tool() { }
     public abstract void selectTool();
     public abstract void deselectTool();
+
+    public abstract void start();
+    public abstract void update();
 }
 

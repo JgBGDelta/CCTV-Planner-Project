@@ -31,10 +31,17 @@ public class ToolbarManager : MonoBehaviour
         }
         auxToolbarSelectionSquare = auxToolbarGameobject.transform.GetChild(0).GetComponent<RectTransform>();
 
+        //Initialize tools
+        foreach (Tool tool in tools)
+        {
+            tool.start();
+        }
+
     }
     private void Start()
     {
         SelectedToolbarId = -1;
+
         StartCoroutine(SelectToolbarFirstTime());
     }
     IEnumerator SelectToolbarFirstTime()
@@ -45,7 +52,8 @@ public class ToolbarManager : MonoBehaviour
 
     void Update()
     {
-        
+        if(selectedTool!= null)
+            selectedTool.update();
     }
 
     bool canSelectTool(int id)
@@ -84,7 +92,7 @@ public class ToolbarManager : MonoBehaviour
         int toolbarToolId = tempResults[0];
         int toolListId = tempResults[1];
 
-        if (!canSelectTool(toolbarToolId))
+        if (!canSelectTool(toolbarToolId) || (toolListId == SelectedToolId))
             return;
 
 

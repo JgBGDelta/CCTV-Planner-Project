@@ -14,10 +14,13 @@ public class ToolbarManagerEditor : Editor
             ToolbarManager manager = (ToolbarManager)target;
             manager.tools = new Tool[] {
                 new MoveTool(),
-                new ZoomTool()
+                new ZoomTool(),
+                new RulerTool()
             };
             manager.tools[0].toolName = "Move";
             manager.tools[1].toolName = "Zoom";
+            manager.tools[2].toolName = "Ruler";
+
 
         }
         base.OnInspectorGUI();

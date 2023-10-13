@@ -38,6 +38,8 @@ public class FastToolScriptCreator : Editor
                 writer.WriteLine("{");
                 writer.WriteLine("");
                  writer.WriteLine("}");
+                writer.WriteLine("public override void start() { }");
+                writer.WriteLine("public override void update() { }");
                 writer.WriteLine("public override void selectTool(){}");
                 writer.WriteLine("public override void deselectTool(){}");
 

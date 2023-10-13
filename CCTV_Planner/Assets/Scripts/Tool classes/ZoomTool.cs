@@ -10,6 +10,8 @@ public class ZoomTool : Tool
     {
 
     }
+    public override void start() { }
+    public override void update() { }
 
     public override void selectTool()
     {

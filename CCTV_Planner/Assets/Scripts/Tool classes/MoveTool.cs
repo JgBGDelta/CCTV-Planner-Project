@@ -11,6 +11,9 @@ public class MoveTool : Tool
 
     }
 
+    public override void start() { }
+    public override void update() { }
+
     public override void selectTool()
     {
         Camera.main.GetComponent<CameraControls>().moveToolSelected = true;
