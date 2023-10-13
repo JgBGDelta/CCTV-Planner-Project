@@ -2012,12 +2012,12 @@ GameObject:
   - component: {fileID: 878874345}
   - component: {fileID: 878874344}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LineRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!120 &878874344
 LineRenderer:
   serializedVersion: 2
