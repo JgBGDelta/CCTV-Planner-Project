@@ -11,23 +11,30 @@ public class RulerTool : Tool
     public TextMeshPro textObj;
     public Transform[] markers;
     private Vector2 startPos;
+    private bool rulering;
+    private bool visible;
 
     public RulerTool() : base() { }
     public override void start() {
         if(rulerGO.activeSelf)
             rulerGO.SetActive(false);
+        rulering = false;
+        visible = true;
     }
     public override void update() {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && ToolbarManager.MouseOverObject() == null)
         {
-            rulerRenderer.enabled = true;
-            textObj.gameObject.SetActive(true);
+            rulering = true;
+            if (!visible)
+            {
+                activateAll();
+            }
 
             startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rulerRenderer.SetPosition(0, new Vector3(startPos.x,startPos.y, 0));
             markers[0].position = new Vector3(startPos.x, startPos.y, 0);
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && rulering && ToolbarManager.MouseOverObject() == null)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rulerRenderer.SetPosition(1, new Vector3(mousePos.x, mousePos.y, 0));
@@ -41,16 +48,38 @@ public class RulerTool : Tool
         }
         if (Input.GetMouseButtonUp(0))
         {
+            rulering = false;
             //rulerRenderer.enabled = false;
             //textObj.gameObject.SetActive(false);
         }
     }
 
+    void deactivateAll()
+    {
+        rulerRenderer.enabled = false;
+        textObj.gameObject.SetActive(false);
+        markers[0].gameObject.SetActive(false);
+        markers[1].gameObject.SetActive(false);
+        visible = false;
+    }
+
+    void activateAll()
+    {
+        rulerRenderer.enabled = true;
+        textObj.gameObject.SetActive(true);
+        markers[0].gameObject.SetActive(true);
+        markers[1].gameObject.SetActive(true);
+        visible = true;
+    }
+
+
     public override void selectTool()
     {
         rulerGO.SetActive(true);
-        rulerRenderer.enabled = false;
-        textObj.gameObject.SetActive(false);
+        if (visible)
+        {
+            deactivateAll();
+        }
     }
     public override void deselectTool()
     {
