@@ -40,9 +40,10 @@ public class ToolbarManager : MonoBehaviour
     }
     private void Start()
     {
+        //Selected toolbarId se inicializa en -1 para que se inicialice la toolbar 0 correctamente
         SelectedToolbarId = -1;
-
         StartCoroutine(SelectToolbarFirstTime());
+
     }
     IEnumerator SelectToolbarFirstTime()
     {
@@ -52,7 +53,7 @@ public class ToolbarManager : MonoBehaviour
 
     void Update()
     {
-        if(selectedTool!= null)
+        if(selectedTool != null)
             selectedTool.update();
     }
 
@@ -70,9 +71,11 @@ public class ToolbarManager : MonoBehaviour
 
     public void selectToolbar(int toolbarId)
     {
+        //si ya está seleccionada o no se puede seleccionar se vuelve
         if (!canSelectToolbar(toolbarId) || SelectedToolbarId == toolbarId)
             return;
         
+        //Se desactivan todas las toolbars menos la seleccionada
         for(int i = 0; i< toolbarsGameobjects.Length; i++)
         {
             if (i != toolbarId)
@@ -81,24 +84,28 @@ public class ToolbarManager : MonoBehaviour
             }
         }
         toolbarsGameobjects[toolbarId].SetActive(true);
+
+        //Guarda el Id de la toolbar seleccionada
         SelectedToolbarId = toolbarId;
-        selectTool("-2,0");
+        selectTool("0,0");
     }
 
     public void selectTool(string parseableStr)
     {
         //Get toolId in the toolbar and toolListId in the global list of tools
         int[] tempResults = getIntsFromParseableString(parseableStr);
+        //The first int indicates the button index inside the toolbar
         int toolbarToolId = tempResults[0];
+        //The second int indicates the index from the tool activated by the button.
         int toolListId = tempResults[1];
 
-        if (!canSelectTool(toolbarToolId) || (toolListId == SelectedToolId))
+        //If can be selected proceed
+        if (!canSelectTool(toolbarToolId))
             return;
 
-
+        //Activate the corresponding selection square (or circle)
         toolbarSelectionSquares[SelectedToolbarId].gameObject.SetActive(!(toolbarToolId < 0));
         auxToolbarSelectionSquare.gameObject.SetActive(toolbarToolId < 0);
-
         if (toolbarToolId < 0)
         {
             auxToolbarSelectionSquare.localPosition = auxToolbarGameobject.transform.GetChild(toolbarToolId + 3).localPosition;
