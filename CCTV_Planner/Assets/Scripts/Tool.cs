@@ -10,7 +10,7 @@ public abstract class Tool
     public abstract void selectTool();
     public abstract void deselectTool();
 
-    public abstract void start();
+    public abstract void start();   
     public abstract void update();
 }
 

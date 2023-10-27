@@ -15,14 +15,36 @@ public class ToolbarManagerEditor : Editor
             manager.tools = new Tool[] {
                 new MoveTool(),
                 new ZoomTool(),
-                new RulerTool()
+                new RulerTool(),
+                new SelectionTool()
             };
             manager.tools[0].toolName = "Move";
             manager.tools[1].toolName = "Zoom";
             manager.tools[2].toolName = "Ruler";
-
+            manager.tools[3].toolName = "Select";
 
         }
+        if(GUILayout.Button("Add script tools"))
+        {
+            Tool[] newTools = new Tool[] { new SelectionTool() };
+            newTools[0].toolName = "Select";
+            addTools(newTools);
+        }
         base.OnInspectorGUI();
+    }
+    void addTools(Tool[] newTools)
+    {
+        ToolbarManager manager = (ToolbarManager)target;
+        Tool[] tools = new Tool[manager.tools.Length + newTools.Length];
+        for(int i = 0; i< manager.tools.Length; i++)
+        {
+            tools[i] = manager.tools[i];
+        }
+        for(int i = 0; i < newTools.Length; i++)
+        {
+            tools[i+manager.tools.Length] = newTools[i];
+        }
+        manager.tools = tools;
+
     }
 }

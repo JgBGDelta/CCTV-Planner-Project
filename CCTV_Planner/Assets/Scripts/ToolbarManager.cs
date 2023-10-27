@@ -88,7 +88,7 @@ public class ToolbarManager : MonoBehaviour
 
         //Guarda el Id de la toolbar seleccionada
         SelectedToolbarId = toolbarId;
-        selectTool("0,0");
+        selectTool("0,2");
     }
 
     public void selectTool(string parseableStr)
@@ -137,21 +137,7 @@ public class ToolbarManager : MonoBehaviour
         return nums;
     }
 
-    public static GameObject MouseOverObject()
-    {
-        PointerEventData pointer = new PointerEventData(EventSystem.current);
-        pointer.position = Input.mousePosition;
-        List<RaycastResult> rayList = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointer, rayList);
-        if (rayList.Count > 0)
-        {
-            return rayList[0].gameObject;
-        }
-        else
-        {
-            return null;
-        }
-    }
+   
 
 
 }

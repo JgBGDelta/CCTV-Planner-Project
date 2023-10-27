@@ -22,7 +22,7 @@ public class RulerTool : Tool
         visible = true;
     }
     public override void update() {
-        if (Input.GetMouseButtonDown(0) && ToolbarManager.MouseOverObject() == null)
+        if (Input.GetMouseButtonDown(0) && Manager.MouseOverObject() == null)
         {
             rulering = true;
             if (!visible)
@@ -34,7 +34,7 @@ public class RulerTool : Tool
             rulerRenderer.SetPosition(0, new Vector3(startPos.x,startPos.y, 0));
             markers[0].position = new Vector3(startPos.x, startPos.y, 0);
         }
-        if (Input.GetMouseButton(0) && rulering && ToolbarManager.MouseOverObject() == null)
+        if (Input.GetMouseButton(0) && rulering && Manager.MouseOverObject() == null)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rulerRenderer.SetPosition(1, new Vector3(mousePos.x, mousePos.y, 0));

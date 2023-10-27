@@ -76,7 +76,7 @@ public class CameraControls : MonoBehaviour
             zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
             _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, zoom, ref velocity, smoothTime);
         }
-        if (moveToolSelected && ToolbarManager.MouseOverObject() == null)
+        if (moveToolSelected && Manager.MouseOverObject() == null)
         {
             if (Input.GetMouseButton(0))
             {
@@ -96,7 +96,7 @@ public class CameraControls : MonoBehaviour
                 _camera.transform.position = origin - difference;
             }
         }
-        if (zoomToolSelected && ToolbarManager.MouseOverObject() == null)
+        if (zoomToolSelected && Manager.MouseOverObject() == null)
         {
             if (Input.GetMouseButton(0))
             {
