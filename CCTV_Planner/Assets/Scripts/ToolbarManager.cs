@@ -126,6 +126,14 @@ public class ToolbarManager : MonoBehaviour
 
     }
 
+    public void selectObjectId(int id)
+    {
+        if(selectedTool is CreateObjectTool)
+        {
+            ((CreateObjectTool)selectedTool).SelectedObjectId = id;
+        }
+    }
+
     private int[] getIntsFromParseableString (string str)
     {
         string[] numsStr = str.Split(",");

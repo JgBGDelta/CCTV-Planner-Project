@@ -16,18 +16,19 @@ public class ToolbarManagerEditor : Editor
                 new MoveTool(),
                 new ZoomTool(),
                 new RulerTool(),
-                new SelectionTool()
+                new SelectionTool(),
+                new CreateObjectTool()
             };
             manager.tools[0].toolName = "Move";
             manager.tools[1].toolName = "Zoom";
             manager.tools[2].toolName = "Ruler";
             manager.tools[3].toolName = "Select";
-
+            manager.tools[4].toolName = "CreateObject";
         }
         if(GUILayout.Button("Add script tools"))
         {
-            Tool[] newTools = new Tool[] { new SelectionTool() };
-            newTools[0].toolName = "Select";
+            Tool[] newTools = new Tool[] { new CreateObjectTool() };
+            newTools[0].toolName = "CreateObject";
             addTools(newTools);
         }
         base.OnInspectorGUI();
