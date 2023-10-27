@@ -15,7 +15,6 @@ public class CreateObjectTool : Tool
         {
             Vector2 mousePosOnWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             GameObject newObject = GameObject.Instantiate(prefabs[SelectedObjectId], mousePosOnWorld, Quaternion.identity,objectsParent);
-            newObject.tag = "Object";
         }
         if (Input.GetMouseButton(0) && Manager.MouseOverObject() == null)
         {
