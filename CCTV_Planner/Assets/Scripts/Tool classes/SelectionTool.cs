@@ -28,7 +28,7 @@ public class SelectionTool : Tool
             GameObject obj = mouseOverObject();
             if (obj != null && obj.CompareTag("Object"))
             {
-                obj.GetComponent<SpriteRenderer>().material.SetInt("_Outline", 1);
+                obj.GetComponent<AppObject>().spriteRenderer.material.SetInt("_Outline", 1);
                 selectedGO = obj;
             }
         }
@@ -74,7 +74,7 @@ public class SelectionTool : Tool
     {
         if (selectedGO != null)
         {
-            selectedGO.GetComponent<SpriteRenderer>().material.SetInt("_Outline", 0);
+            selectedGO.GetComponent<AppObject>().spriteRenderer.material.SetInt("_Outline", 0);
             selectedGO = null;
         }
     }

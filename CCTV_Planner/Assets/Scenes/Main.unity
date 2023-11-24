@@ -2164,6 +2164,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2268,6 +2269,50 @@ MonoBehaviour:
   <minZoom>k__BackingField: 2
   <smoothTime>k__BackingField: 0.25
   zoomMultiplierDragging: 0.0002
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1001 &534331583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2987,6 +3032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 878874345}
   - component: {fileID: 878874344}
+  - component: {fileID: 878874346}
   m_Layer: 0
   m_Name: LineRenderer
   m_TagString: Untagged
@@ -3113,6 +3159,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 104819667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &878874346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878874343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd0f99fcdb6c3b4b8c82527d8629627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLineRenderer: 1
+  tileScale: 0.03
+  desiredSize: 10
 --- !u!1 &901214209
 GameObject:
   m_ObjectHideFlags: 0
@@ -3391,6 +3452,7 @@ GameObject:
   - component: {fileID: 923406258}
   - component: {fileID: 923406260}
   - component: {fileID: 923406259}
+  - component: {fileID: 923406261}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3552,6 +3614,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &923406261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923406257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd0f99fcdb6c3b4b8c82527d8629627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLineRenderer: 0
+  tileScale: 1
+  desiredSize: 0.09
 --- !u!1 &1054289826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5092,6 +5169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1730013107}
   - component: {fileID: 1730013108}
+  - component: {fileID: 1730013109}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -5166,6 +5244,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1730013109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730013106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd0f99fcdb6c3b4b8c82527d8629627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLineRenderer: 0
+  tileScale: 1
+  desiredSize: 0.23
 --- !u!1 &1733011373
 GameObject:
   m_ObjectHideFlags: 0
@@ -5571,14 +5664,14 @@ MonoBehaviour:
       data:
         toolName: Select
         selectedGO: {fileID: 0}
-        timeForDrag: 0.05
+        timeForDrag: 0.1
     - rid: 9122974054004817921
       type: {class: CreateObjectTool, ns: , asm: Assembly-CSharp}
       data:
         toolName: CreateObject
         prefabs:
-        - {fileID: 7745936615325631167, guid: 8604bb4f0a87e134aa1689468a3c1114, type: 3}
-        - {fileID: 7921859489759224760, guid: e00972128d66a7b4c8cc49ac302689ac, type: 3}
+        - {fileID: 6601080705238426262, guid: a2cd8a9dc4a5a0a429d27cfd5862ae5e, type: 3}
+        - {fileID: 6601080705238426262, guid: fa1b4010e9e22084ebf6635bdff45a27, type: 3}
         objectsParent: {fileID: 555154350}
 --- !u!224 &1817400534 stripped
 RectTransform:
@@ -5729,6 +5822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1842521696}
   - component: {fileID: 1842521697}
+  - component: {fileID: 1842521698}
   m_Layer: 0
   m_Name: Circle (1)
   m_TagString: Untagged
@@ -5803,6 +5897,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1842521698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842521695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd0f99fcdb6c3b4b8c82527d8629627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLineRenderer: 0
+  tileScale: 1
+  desiredSize: 0.23
 --- !u!1 &1858688022
 GameObject:
   m_ObjectHideFlags: 0
